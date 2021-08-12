@@ -1,0 +1,128 @@
+#!/bin/sh
+
+Usage() {
+	echo "Minicom Hub "
+	echo ""
+	echo "    This tools is a management tools for minicom."
+	echo ""
+	echo ""
+	echo "Usage:"
+	echo "    Showing information about debug consoles. "
+	echo "Commands:"
+	echo "    mh list | ls "
+	echo "Example:"
+	echo "    --------------+--------------+----------------------------"
+	echo "        Device    |     User     |        Kick command"
+	echo "    --------------+--------------+----------------------------"
+	echo "    ttyUSB0       | gigo         | sudo mh kick ttyUSB0       "
+	echo "    ttyUSB1       |              |                            "
+	echo ""
+	echo "    We found two debug consoles, one is ttyUSB0 and another is ttyUSB1; Based on "
+	echo "above example, ttyUSB0 is used by user gigo, and ttyUSB1 is available to use."
+	echo ""
+	echo ""
+	echo "Usage:"
+	echo "    Using debug console"
+	echo "Commands:"
+	echo "    mh use <tty-device> [<baudrate>]"
+	echo "Example:"
+	echo "    By default, baudrate is 115200. To use debug console ttyUSB1 you can "
+	echo "using command like \"mh use ttyUSB1\" or \"mh use ttyUSB1 115200\""
+	echo ""
+	echo ""
+	echo "Usage:"
+	echo "    Leaving debug console"
+	echo "Commands:"
+	echo "    Using combination of CTRL+q, and choice yes"
+	echo ""
+	echo ""
+	echo "Usage:"
+	echo "    Taking over debug console's ownership"
+	echo "Commands:"
+	echo "    mh kick <tty-device>"
+	echo "Example:"
+	echo "    This best way to take over ownership of ttyUSB0, is to ask user to leave debug console."
+	echo "Like first example, we know user gigo is using ttyUSB0, you can ask gigo to leave debug "
+	echo "console, then use it."
+	echo ""
+	echo "    But sometimes, you can't reach user and you need to use that console. You can use this"
+	echo "command \"mh kick ttyUSB0\" to force user leave debug console ttyUSB0. So you can use that"
+	echo "debug console by using \"mh use ttyUSB0\"."
+}
+
+Clean_Minicom_Used() {
+	if test -f /var/mh-used-${1}; then
+		rm -f /var/mh-used-${1}
+	fi
+}
+
+list_Info() {
+	ls /dev/ttyUSB* 1>/var/minicom.devices
+	echo -ne "--------------+--------------+----------------------------\n\r"
+	echo -ne "    Device    |     User     |        Kick command        \n\r"
+	echo -ne "--------------+--------------+----------------------------\n\r"
+	while read UART; do
+		local TTY=`awk -F/ '{print $3}' <<< ${UART}`
+		if test -f "/var/mh-used-${TTY}"; then
+			local USER=`cat /var/mh-used-${TTY}`
+			printf "%-13s | %-12s | sudo mh kick %-7s \n\r" ${TTY} ${USER} ${TTY}
+		else
+			printf "%-13s | %-12s | %-25s \n\r" ${TTY} "" ""
+		fi
+	done < /var/minicom.devices
+	rm /var/minicom.devices
+}
+
+kill_PPID() {
+	#echo "PID = ${1}"
+	kill -9 `cat /proc/${1}/status | grep -v grep | grep PPid | awk '{print $2}'`
+	kill -9 ${1}
+}
+
+kick_Uart() {
+	echo "Kick Uart ${1}"
+	if test -f /var/mh-used-${1}; then
+		local PID=`cat /var/lock/LCK..${1}`
+		kill_PPID ${PID}
+		rm /var/lock/LCK..${1}
+		Clean_Minicom_Used "$1"
+	fi
+}
+
+use_Uart() {
+	#echo "Number of arguments is $#"
+	if test -f /var/mh-used-${1}; then
+		echo "This console is owned by user `cat /var/mh-used-${1}`"
+	else
+		local BAUDRATE=115200
+		if (( $# > 1 )); then
+			BAUDRATE=$2
+		fi
+
+		echo "${SUDO_USER}" 1>>/var/mh-used-${1}
+
+		sudo minicom -D /dev/${1} -b ${BAUDRATE} -8 --term=linux 
+		Clean_Minicom_Used "$1"
+	fi
+}
+
+case $1 in
+	list|ls)
+		list_Info
+		;;
+	kick)
+		kick_Uart $2
+		;;
+	use)
+		#echo "Number of argument is $#"
+		if (( $# > 2 )); then
+			use_Uart $2 $3
+		else
+			use_Uart $2
+		fi
+		;;
+	help|-h|*)
+		Usage
+		;;
+esac
+

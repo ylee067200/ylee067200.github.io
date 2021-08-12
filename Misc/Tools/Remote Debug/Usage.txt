@@ -1,0 +1,108 @@
+1. 登入 RPI (Raspberry PI)
+--------------------------
+
+使用 Putty 或是其他 ssh client，執行 ssh opensys@10.32.3.195。密碼是 foxconn123
+
+請使用公司內部連線
+
+2. BMC debug console
+-------------------------
+
+這台 RPI 可能會連上多台 BMC，所以請確認連接的 USB Port。目前 Mt. Collins 是接在 ttyUSB1 上。
+
+我在 RPI 上面寫了一個小程式 "mh"，方便各位遠端連接到 BMC 上。
+
+2-1. 查看連接的 BMC console
+===========================
+
+執行命令 "sudo mh ls"，如需要輸入密碼，請輸入 "foxconn123"。應該會出現類似下面的結果
+
+opensys@ubuntu:~$ sudo mh ls
+[sudo] password for opensys:
+--------------+--------------+----------------------------
+    Device    |     User     |        Kick command
+--------------+--------------+----------------------------
+/dev/ttyUSB1  |              |
+opensys@ubuntu:~$
+
+當 User 欄位是空的，表示這個 console 目前沒人用。你可以使用
+
+2-2. 接上 BMC console
+=====================
+
+執行命令 "sudo mh use ttySUB1"，如需要輸入密碼，請輸入 "foxconn123"。就會進入 BMC debug console。
+
+注意！  因為 Mt. Collins 的 debug console 沒有 hardware flow control，所以你必須關閉相關功能。不然你的輸入不會傳進 BMC
+
+關閉 hardware flow control 的方式：
+
+在進入 BMC debug console 之後，按下 "CTRL + a"，再按 'o'，會出現下面選單
+
+Welcome to minicom 2.7.1
+
+OPTIONS: I18n
+Compiled on Dec 23 2019, 02:06:26.
+Port /dev/ttyUSB1, 06:28:51
+
+Press CTRL-A Z for help on special keys
+
+            +-----[configuration]------+
+            | Filenames and paths      |
+            | File transfer protocols  |
+            | Serial port setup        |
+            | Modem and dialing        |
+            | Screen and keyboard      |
+            | Save setup as dfl        |
+            | Save setup as..          |
+            | Exit                     |
+            +--------------------------+
+
+使用上下鍵，移動光標到 "Serial port setup"，按下 "Enter"，會出現另一個選單
+
+Welcome to minicom 2.7.1
+
+OPTI+-----------------------------------------------------------------------+
+Comp| A -    Serial Device      : /dev/ttyUSB1                              |
+Port| B - Lockfile Location     : /var/lock                                 |
+    | C -   Callin Program      :                                           |
+Pres| D -  Callout Program      :                                           |
+    | E -    Bps/Par/Bits       : 115200 8N1                                |
+    | F - Hardware Flow Control : Yes                                       |
+    | G - Software Flow Control : No                                        |
+    |                                                                       |
+    |    Change which setting?                                              |
+    +-----------------------------------------------------------------------+
+            | Screen and keyboard      |
+            | Save setup as dfl        |
+            | Save setup as..          |
+            | Exit                     |
+            +--------------------------+
+
+再按下 'f'，你應該會看到 "F - Hardware Flow Control" 由 Yes 轉成 No。確認之後，按下 "Enter" 回到第一個選單。
+用上下鍵，將光標移到 "Exit"，按下 "Enter" 即可。
+
+
+2-3. 離開 BMC console
+=====================
+
+按下 "CTRL + a"，再按 'q'，會出現確認選項。選 "Yes" 即可。
+
+
+Welcome to minicom 2.7.1
+
+OPTIONS: I18n
+Compiled on Dec 23 2019, 02:06:26.
+Port /dev/ttyUSB1, 06:28:51
+
+Press CTRL-A Z for help on sp+----------------------+
+                             | Leave without reset? |
+                             |     Yes       No     |
+ast#                         +----------------------+
+ast#
+ast#
+ast#
+
+
+
+
+
