@@ -70,7 +70,7 @@ Changing layout | **${CTRL}-b ${META}-1** / **C-b M-1** | 所有的 panes 都垂
 -- | **${CTRL}-b ${META}-3** / **C-b M-3** | 兩個水平的畫面。一個主畫面，另一個讓其他 pane 均分
 -- | **${CTRL}-b ${META}-4** / **C-b M-4** | 兩個重質的畫面。一個主畫面，另一個讓其他 pane 均分
 -- | **${CTRL}-b ${META}-5** / **C-b M-5** | 所有的 panes 均分畫面
--- | **${CTRL}-b ${SPACE} / **C-b ${SPACE}** | 
+-- | **${CTRL}-b ${SPACE}** / **C-b ${SPACE}** | 
 
 ## Pane management
 
@@ -80,13 +80,12 @@ Description | Key bindings | Explanations
 ----------- | ------------ | -------------
 Splitting Panes | **${CTRL}-b "** / **C-b "** | Vertical 
 -- | **${CTRL}-b %** / **C-b %** | Horizan 
-Navigating Panes | **${CTRL}-b <arrow keys>** / **C-b <arrow keys> | 
--- | **{CTRL}-b o** / **C-b o | Rotate panes in current window
+Navigating Panes | **${CTRL}-b <arrow keys>** / **C-b <arrow keys>** | 
+-- | **{CTRL}-b o** / **C-b o** | Rotate panes in current window
 Zoom in / Zoom out | **${CTRL}-b z** / **C-b z** | 
 Independent | **${CTRL}-b !** / **C-b !** | Making current pane into new window 
 Closing panes | **${CTRL}-d** / **C-d** | Only work in shell prompt.
 Closing panes | **${CTRL}-b x** / **C-b x** | With double confirm
--- | exit | Input "exit" in shell 
 
 ## Commands
 
