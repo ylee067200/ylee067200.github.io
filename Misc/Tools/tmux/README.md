@@ -38,7 +38,7 @@ Creating a new naming session | tmux new -s ${SESSION NAME} |
 Opening an existed session | tmux attach -t ${SESSION NAME} | 
 Listing all existed sessions | tmux ls | 
 Killing session | tmux kill-session -t ${SESSION NAME} | 
-- | tmux kill-session -a | Kill all tmu sessions
+-- | tmux kill-session -a | Kill all tmu sessions
 
 ## Key bindings
 
@@ -49,8 +49,8 @@ Naming current session | **${CTRL}-b $** / **C-b $** |
 Attaching session | **${CTRL}-b s** / **C-b s** | 
 De-attaching current sessions | **${CTRL}-b d** / **C-b d** | 
 Switching attached session | **${CTRL}-b (** / **C-b (** | previous session
-- | **${CTRL}-b )** / **C-b )** | next session 
-- | **${CTRL}-b s** / **C-b s** | Showing a menu to display all sessions
+-- | **${CTRL}-b )** / **C-b )** | next session 
+-- | **${CTRL}-b s** / **C-b s** | Showing a menu to display all sessions
 
 ## Window management
 
@@ -62,15 +62,15 @@ Creating a new Window | **${CTRL}-b c** / **C-b c** |
 Closing current Window | **${CTRL}-b &** / **C-b &** | With double confirm
 Renaming current window | **${CTRL}-b ,** / **C-b ,** |   
 Navigating Windows | **${CTRL}-b p** / **C-b p** | previous window
-- | **${CTRL}-b n** / **C-b n** | next window
-- | **${CTRL}-b w** / **C-b w** | 
-- | **${CTRL}-b <number>** / **C-b <number>** | Showing a menu to display all panes
+-- | **${CTRL}-b n** / **C-b n** | next window
+-- | **${CTRL}-b w** / **C-b w** | 
+-- | **${CTRL}-b <number>** / **C-b <number>** | Showing a menu to display all panes
 Changing layout | **${CTRL}-b ${META}-1** / **C-b M-1** | 所有的 panes 都垂直均分畫面
-- | **${CTRL}-b ${META}-2** / **C-b M-2** | 所有的 panes 都水平均分畫面
-- | **${CTRL}-b ${META}-3** / **C-b M-3** | 兩個水平的畫面。一個主畫面，另一個讓其他 pane 均分
-- | **${CTRL}-b ${META}-4** / **C-b M-4** | 兩個重質的畫面。一個主畫面，另一個讓其他 pane 均分
-- | **${CTRL}-b ${META}-5** / **C-b M-5** | 所有的 panes 均分畫面
-- | **${CTRL}-b ${SPACE} / **C-b ${SPACE}** | 
+-- | **${CTRL}-b ${META}-2** / **C-b M-2** | 所有的 panes 都水平均分畫面
+-- | **${CTRL}-b ${META}-3** / **C-b M-3** | 兩個水平的畫面。一個主畫面，另一個讓其他 pane 均分
+-- | **${CTRL}-b ${META}-4** / **C-b M-4** | 兩個重質的畫面。一個主畫面，另一個讓其他 pane 均分
+-- | **${CTRL}-b ${META}-5** / **C-b M-5** | 所有的 panes 均分畫面
+-- | **${CTRL}-b ${SPACE} / **C-b ${SPACE}** | 
 
 ## Pane management
 
@@ -79,14 +79,14 @@ Changing layout | **${CTRL}-b ${META}-1** / **C-b M-1** | 所有的 panes 都垂
 Description | Key bindings | Explanations
 ----------- | ------------ | -------------
 Splitting Panes | **${CTRL}-b "** / **C-b "** | Vertical 
-- | **${CTRL}-b %** / **C-b %** | Horizan 
+-- | **${CTRL}-b %** / **C-b %** | Horizan 
 Navigating Panes | **${CTRL}-b <arrow keys>** / **C-b <arrow keys> | 
-- | **{CTRL}-b o** / **C-b o | Rotate panes in current window
+-- | **{CTRL}-b o** / **C-b o | Rotate panes in current window
 Zoom in / Zoom out | **${CTRL}-b z** / **C-b z** | 
 Independent | **${CTRL}-b !** / **C-b !** | Making current pane into new window 
 Closing panes | **${CTRL}-d** / **C-d** | Only work in shell prompt.
 Closing panes | **${CTRL}-b x** / **C-b x** | With double confirm
-- | exit | Input "exit" in shell 
+-- | exit | Input "exit" in shell 
 
 ## Commands
 
