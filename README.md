@@ -10,7 +10,7 @@ Short stories for different topics
 
 Tools I used every day, including configuration files for these tools.
 
-### [VM](https://github.com/ylee067200/ylee067200.github.io/tree/main/VM)
+### [VM](https://github.com/ylee067200/ylee067200.github.io/tree/main/Misc/VM)
 
 Information for using Docker (with dockerfile) or WSL
 

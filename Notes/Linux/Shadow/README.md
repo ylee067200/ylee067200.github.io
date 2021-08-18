@@ -1,3 +1,5 @@
+# 簡介
+
 在 Linux 環境中，帳號的密碼是存放在 /etc/shadow 檔案。每一個帳號的格式是這樣：
 
 root:$6$6x.0NmGjJud3jmeW$mqBwTdkAoA0uXsqfZX9N3u6NTV9rdCyrsXu9AFLw0R0/UQems0HeHMGAebm3nmaS.lac1QJwsqMWFuzO8YorC/:18753:0:99999:7:::
@@ -28,9 +30,15 @@ $6$6x.0NmGjJud3jmeW$mqBwTdkAoA0uXsqfZX9N3u6NTV9rdCyrsXu9AFLw0R0/UQems0HeHMGAebm3
 
 ### 演算法
 
-第一個 "$" 後面的數字，是表示加密的演算法。目前有以下兩種：
-1. SHA512 (6) 
-2. SHA256 (5)
+第一個 "$" 後面的數字，是表示加密的演算法。目前支援以下幾種：
+
+Type | Algorithm
+---- | ---------
+1 | MD5
+2a | Blowfish
+2y | Blowfish
+5 | SHA-256
+6 | SHA-512
 
 ### SALT
 
