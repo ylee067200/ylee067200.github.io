@@ -54,6 +54,12 @@ low characters allow.
     d) --name: Naming your container. You can use "docker ps" or "docker container ls -a" to see your containers with these names.
 
     e) ${IMAGE TAG}: Tag name for your docker image. Checking step 2.
+    
+## Re-start a docker container
+
+```
+docker start ${CONTAINER NAME}
+```
 
 # Misc 
 
