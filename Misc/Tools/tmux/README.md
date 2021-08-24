@@ -51,6 +51,7 @@ De-attaching current sessions | **${CTRL}-b d** / **C-b d** |
 Switching attached session | **${CTRL}-b (** / **C-b (** | previous session
 -- | **${CTRL}-b )** / **C-b )** | next session 
 -- | **${CTRL}-b s** / **C-b s** | Showing a menu to display all sessions
+Searching | **${CTRL}-b f** / **C-b f** | Seraching key words in current session
 
 ## Window management
 
@@ -86,6 +87,9 @@ Zoom in / Zoom out | **${CTRL}-b z** / **C-b z** |
 Independent | **${CTRL}-b !** / **C-b !** | Making current pane into new window 
 Closing panes | **${CTRL}-d** / **C-d** | Only work in shell prompt.
 Closing panes | **${CTRL}-b x** / **C-b x** | With double confirm
+Entering copy mode | **${CTRL}-b [** / **C-b [** | You can use arrow key or page up/down to scroll console
+Copying line | **${CTRL} SPACE** / **C SPACE** | After entering copy mode, moving cursor to the line you want to copy. Press **C space** to start copy, and using mouse to copy the line you want
+Pastle lline | **${CTRL}-b ]** / **C-b ]** | Paste whatever you copied
 
 ## Commands
 
