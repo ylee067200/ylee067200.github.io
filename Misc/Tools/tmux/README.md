@@ -32,16 +32,19 @@ Tmux also provide some commands, you need to use **C-:** to enter tmux command p
 
 There will be a tmux session in your machine, live forever until machine shutdown or you leave your tmux. You can deattch from tmux, and re-use deattched tmux session later. It is a very powerful feature for running stress test.
 
+## Commands
+
 Description | Commands | Explanation
 ----------- | -------- | ------------
 Creating a new naming session | tmux new -s ${SESSION NAME} | 
 Opening an existed session | tmux attach -t ${SESSION NAME} | 
 Listing all existed sessions | tmux ls | 
-Killing sessions | tmux kill-session -t ${SESSION NAME} </br> tmux kill-session -a | Kill all tmu sessions
+Killing sessions | tmux kill-session -t ${SESSION NAME} </br> tmux kill-session -a | Kill all tmux sessions
 
 ## Key bindings
 
-You also can do similar jobs in tmux, and here are commands in tmux:
+You also can do similar jobs in tmux, and here are commands.
+
 Description | Key bindings | Explanation
 ----------- | ------------ | ------------
 Naming current session | **${CTRL}-b $** / **C-b $** | 
@@ -59,8 +62,8 @@ Description | Key bindings | Explanations
 Creating a new Window | **${CTRL}-b c** / **C-b c** | 
 Closing current Window | **${CTRL}-b &** / **C-b &** | With double confirm
 Renaming current window | **${CTRL}-b ,** / **C-b ,** |   
-Navigating Windows | **${CTRL}-b p** / **C-b p** </br> **${CTRL}-b n** / **C-b n** </br> **${CTRL}-b w** / **C-b w** </br> **${CTRL}-b <number>** / **C-b <number>** | previous window </br> next window </br>  </br> Showing a menu to display all panes
-Changing layout | **${CTRL}-b ${META}-1** / **C-b M-1** </br> **${CTRL}-b ${META}-2** / **C-b M-2** </br> **${CTRL}-b ${META}-3** / **C-b M-3** </br> **${CTRL}-b ${META}-4** / **C-b M-4** </br> **${CTRL}-b ${META}-5** / **C-b M-5** </br> **${CTRL}-b ${SPACE}** / **C-b ${SPACE}** | 所有的 panes 都垂直均分畫面 </br> 所有的 panes 都水平均分畫面 </br> 兩個水平的畫面。一個主畫面，另一個讓其他 pane 均分 </br> 兩個重質的畫面。一個主畫面，另一個讓其他 pane 均分 </br> 所有的 panes 均分畫面
+Navigating Windows | **${CTRL}-b p** / **C-b p** </br> **${CTRL}-b n** / **C-b n** </br> **${CTRL}-b w** / **C-b w** </br> **${CTRL}-b ${number}** / **C-b ${number}** | previous window </br> next window </br>  </br> Showing a menu to display all panes </br> 切換到對應的 panel
+Changing layout | **${CTRL}-b ${META}-1** / **C-b M-1** </br> **${CTRL}-b ${META}-2** / **C-b M-2** </br> **${CTRL}-b ${META}-3** / **C-b M-3** </br> **${CTRL}-b ${META}-4** / **C-b M-4** </br> **${CTRL}-b ${META}-5** / **C-b M-5** </br> **${CTRL}-b ${SPACE}** / **C-b ${SPACE}** | 所有的 panes 都垂直均分畫面 </br> 所有的 panes 都水平均分畫面 </br> 兩個水平的畫面。一個主畫面，另一個讓其他 pane 均分 </br> 兩個重質的畫面。一個主畫面，另一個讓其他 pane 均分 </br> 所有的 panes 均分畫面 </br> 依序改變 layout
 
 ## Pane management
 
@@ -69,14 +72,14 @@ Changing layout | **${CTRL}-b ${META}-1** / **C-b M-1** </br> **${CTRL}-b ${META
 Description | Key bindings | Explanations
 ----------- | ------------ | -------------
 Splitting Panes | **${CTRL}-b "** / **C-b "** </br> **${CTRL}-b %** / **C-b %** | Vertical </br> Horizan 
-Navigating Panes | **${CTRL}-b <arrow keys>** / **C-b <arrow keys>** </br> **{CTRL}-b o** / **C-b o** | </br> Rotate panes in current window
+Navigating Panes | **${CTRL}-b ${arrow keys}** / **C-b ${arrow keys}** </br> **{CTRL}-b o** / **C-b o** | </br> Rotate panes in current window
 Zoom in / Zoom out | **${CTRL}-b z** / **C-b z** | 
 Independent | **${CTRL}-b !** / **C-b !** | Making current pane into new window 
-Closing panes | **${CTRL}-d** / **C-d** | Only work in shell prompt.
 Closing panes | **${CTRL}-b x** / **C-b x** | With double confirm
 Entering copy mode | **${CTRL}-b [** / **C-b [** | You can use arrow key or page up/down to scroll console
-Copying line | **${CTRL} SPACE** / **C SPACE** | After entering copy mode, moving cursor to the line you want to copy. Press **C space** to start copy, and using mouse to copy the line you want
-Pastle lline | **${CTRL}-b ]** / **C-b ]** | Paste whatever you copied
+Copying lines | **${CTRL} SPACE** / **C SPACE** | Copying marked data in copy mode
+Pastle lines | **${CTRL}-b ]** / **C-b ]** | Paste whatever you copied
+Leaving copy mode | **${CTRL}-b q** / **C-b q** | Leaving copy mode
 
 ## Commands
 
@@ -84,6 +87,6 @@ These commands should be input in tmux command prompt, you need to use key bindi
 
 Description | Commands | Explanations
 ----------- | -------- | -------------
-Resize pane | "resize-pane -[UDLR] ${NUM}" | [UDLR] is the direction
+Resize pane | "resize-pane -[UDLR] ${NUM}" | [UDLR] is the direction </br> U for up, D for Down, L for Left, and R for Right
 
 
